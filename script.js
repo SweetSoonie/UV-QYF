@@ -1,5 +1,19 @@
 const nombresSemestres = {
-    'Primer semestre': [
+    '1-1': 'Primer semestre',
+    '1-2': 'Segundo semestre',
+    '2-1': 'Tercer semestre',
+    '2-2': 'Cuarto semestre',
+    '3-1': 'Quinto semestre',
+    '3-2': 'Sexto semestre',
+    '4-1': 'Séptimo semestre',
+    '4-2': 'Octavo semestre',
+    '5-1': 'Noveno semestre',
+    '5-2': 'Décimo semestre',
+    '6-1': 'Onceavo semestre'
+};
+
+const ramos = {
+    '1-1': [
         { nombre: 'Química General I', codigo: 'qg1' },
         { nombre: 'Matemáticas', codigo: 'mat' },
         { nombre: 'Biología Celular', codigo: 'bio' },
@@ -8,7 +22,7 @@ const nombresSemestres = {
         { nombre: 'Anatomía', codigo: 'anat' },
         { nombre: 'Taller de Nivelación de Lenguaje', codigo: 'leng' }
     ],
-    'Segundo semestre': [
+    '1-2': [
         { nombre: 'Química General II', codigo: 'qg2', prereq: ['qg1', 'lab'] },
         { nombre: 'Cálculo', codigo: 'calc', prereq: ['mat'] },
         { nombre: 'Fisiología I', codigo: 'fisio1', prereq: ['bio', 'anat'] },
@@ -16,7 +30,7 @@ const nombresSemestres = {
         { nombre: 'Introducción a la Estadística', codigo: 'estad', prereq: ['mat'] },
         { nombre: 'Taller de Nivelación de Inglés', codigo: 'ing' }
     ],
-    'Tercer semestre': [
+    '2-1': [
         { nombre: 'Química Orgánica II', codigo: 'qo2', prereq: ['qg2', 'qo1'] },
         { nombre: 'Química Analítica', codigo: 'qa', prereq: ['qg2', 'calc'] },
         { nombre: 'Fisiología II', codigo: 'fisio2', prereq: ['fisio1'] },
@@ -24,7 +38,7 @@ const nombresSemestres = {
         { nombre: 'Bioquímica', codigo: 'bioq', prereq: ['bio', 'qo1'] },
         { nombre: 'Ética', codigo: 'etica', prereq: ['leng'] }
     ],
-    'Cuarto semestre': [
+    '2-2': [
         { nombre: 'Botánica', codigo: 'bot', prereq: ['bio', 'qo1'] },
         { nombre: 'Análisis Instrumental', codigo: 'ai', prereq: ['qa'] },
         { nombre: 'Fisiopatología', codigo: 'fp', prereq: ['fisio2'] },
@@ -32,7 +46,7 @@ const nombresSemestres = {
         { nombre: 'Administración de Recursos Humanos', codigo: 'rrhh', prereq: ['adm', 'etica'] },
         { nombre: 'Introducción a la Química Farmacéutica', codigo: 'iqf2', prereq: ['qo2'] }
     ],
-    'Quinto semestre': [
+    '3-1': [
         { nombre: 'Farmacognosia', codigo: 'fco', prereq: ['qo2', 'bot'] },
         { nombre: 'Biología Molecular', codigo: 'biomol', prereq: ['bioq'] },
         { nombre: 'Operaciones Unitarias', codigo: 'ou', prereq: ['fcq'] },
@@ -41,7 +55,7 @@ const nombresSemestres = {
         { nombre: 'Microbiología', codigo: 'micro', prereq: ['bioq'] },
         { nombre: 'Legislación Farmacéutica', codigo: 'leg', prereq: ['adm'] }
     ],
-    'Sexto semestre': [
+    '3-2': [
         { nombre: 'Biofarmacia', codigo: 'biof', prereq: ['fisio2', 'ai'] },
         { nombre: 'Farmacología I', codigo: 'farma1', prereq: ['fp', 'qf1'] },
         { nombre: 'Inmunología', codigo: 'inmu', prereq: ['fp', 'biomol'] },
@@ -49,7 +63,7 @@ const nombresSemestres = {
         { nombre: 'Práctica Profesional Farmacia I', codigo: 'ppf1', prereq: ['etica', 'rrhh', 'leg'] },
         { nombre: 'Bioestadística', codigo: 'bioest', prereq: ['mat', 'etica'] }
     ],
-    'Séptimo semestre': [
+    '4-1': [
         { nombre: 'Tecnología Farmacéutica I', codigo: 'tf1', prereq: ['ou', 'biof'] },
         { nombre: 'Farmacología II', codigo: 'farma2', prereq: ['farma1', 'qf2'] },
         { nombre: 'Química Fisiológica y Patológica', codigo: 'qfp', prereq: ['ai', 'inmu'] },
@@ -58,7 +72,7 @@ const nombresSemestres = {
         { nombre: 'Metodología de la Investigación', codigo: 'met', prereq: ['etica', 'bioest'] },
         { nombre: 'Taller Integración Perfil de Egreso I', codigo: 'tipe1', prereq: ['ppf1'] }
     ],
-    'Octavo semestre': [
+    '4-2': [
         { nombre: 'Tecnología Farmacéutica II', codigo: 'tf2', prereq: ['tf1'] },
         { nombre: 'Farmacia Asistencial', codigo: 'fa', prereq: ['rrhh', 'sp'] },
         { nombre: 'Nutrición', codigo: 'nut', prereq: ['qfp', 'qali'] },
@@ -67,7 +81,7 @@ const nombresSemestres = {
         { nombre: 'Seminario de Licenciatura', codigo: 'sem', prereq: ['tf1', 'farma2', 'qfp', 'sp', 'qali', 'met', 'tipe1'] },
         { nombre: 'Taller Integración Perfil de Egreso II', codigo: 'tipe2', prereq: ['tipe1'] }
     ],
-    'Noveno semestre': [
+    '5-1': [
         { nombre: 'Farmacia Clínica I', codigo: 'fc1', prereq: ['tf2', 'fa', 'nut', 'gc', 'bqc', 'sem', 'tipe2'] },
         { nombre: 'Cosmética', codigo: 'cosm', prereq: ['tf2'] },
         { nombre: 'Toxicología', codigo: 'toxi', prereq: ['farma2'] },
@@ -76,13 +90,13 @@ const nombresSemestres = {
         { nombre: 'Práctica Profesional II', codigo: 'ppf2', prereq: ['ppf1', 'farma2'] },
         { nombre: 'Taller Integración Perfil de Egreso III', codigo: 'tipe3', prereq: ['tipe2'] }
     ],
-    'Décimo semestre': [
+    '5-2': [
         { nombre: 'Asignatura Electiva Profesional II', codigo: 'elect2', prereq: ['etica'] },
         { nombre: 'Farmacia Clínica II', codigo: 'fc2', prereq: ['fc1'] },
         { nombre: 'Unidad de Investigación I o Internado I', codigo: 'ui1', prereq: ['sem'] },
-        { nombre: 'Práctica Profesional III', codigo: 'ppf3', prereq: ['ai', 'qali', 'tf2', 'fa', 'bqc', 'toxi'] }
+        { nombre: 'Práctica Profesional III', codigo: 'ppf3', prereq: [] }
     ],
-    'Onceavo semestre': [
+    '6-1': [
         { nombre: 'Unidad de Investigación II o Internado II', codigo: 'ui2', prereq: ['ui1'] }
     ]
 };
