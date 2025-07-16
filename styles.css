@@ -1,13 +1,13 @@
 body {
-    font-family: Poppins, sans-serif;
-    background-color: #fef2f8; /* fondo rosa pastel más claro */
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fef2f8; /* fondo rosa pastel claro */
     padding: 20px;
     margin: 0;
 }
 
 h1 {
     text-align: center;
-    color: #444;
+    color: #c2236d; /* título rosa fuerte */
 }
 
 #malla-container {
@@ -23,7 +23,7 @@ h1 {
     border-radius: 10px;
     padding: 10px;
     width: 250px;
-    background-color: #fff2fe;
+    background-color: white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
@@ -35,7 +35,7 @@ h1 {
 }
 
 .ramo {
-    background-color: #f9d5ec; /* rosado pastel */
+    background-color: #f9d5ec; /* rosa pastel para no aprobados */
     padding: 10px;
     border-radius: 6px;
     margin: 6px 0;
@@ -44,7 +44,7 @@ h1 {
     text-align: center;
     font-size: 0.95em;
     font-weight: bold;
-    color: #333;
+    color: #c2236d; /* texto rosado fuerte */
     border: 1px solid #ddd;
 }
 
@@ -55,11 +55,11 @@ h1 {
 .ramo.aprobado {
     background-color: #d7bce8; /* morado pastel */
     text-decoration: line-through;
-    color: #555;
+    color: #9351a6; /* texto morado */
 }
 
 .ramo.bloqueado {
-    background-color: #e0e0e0; /* gris claro */
+    background-color: #e0e0e0;
     color: #999;
     cursor: not-allowed;
     border: 1px dashed #aaa;
