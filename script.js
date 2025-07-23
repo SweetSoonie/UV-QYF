@@ -103,7 +103,7 @@ const ramos = {
 
 function cargarRamos() {
     const container = document.getElementById('malla-container');
-    container.innerHTML = ""; // limpiar antes de cargar
+    container.innerHTML = ""; // limpiar antes de recargar
 
     for (let semestre in ramos) {
         const semDiv = document.createElement('div');
@@ -124,9 +124,9 @@ function cargarRamos() {
 
             div.addEventListener('click', () => {
                 if (div.classList.contains('bloqueado')) return;
-                div.classList.toggle('aprobado');
-                guardarEstado(ramo.codigo, div.classList.contains('aprobado'));
-                actualizarProgreso(); // actualiza al hacer clic
+                const aprobado = div.classList.toggle('aprobado');
+                guardarEstado(ramo.codigo, aprobado);
+                actualizarProgreso();
             });
 
             semDiv.appendChild(div);
@@ -135,7 +135,7 @@ function cargarRamos() {
         container.appendChild(semDiv);
     }
 
-    actualizarProgreso(); // actualiza al cargar
+    actualizarProgreso();
 }
 
 function cumplePrerreq(ramo) {
@@ -160,7 +160,9 @@ function actualizarProgreso() {
     });
 
     const porcentaje = Math.round((aprobados / totalRamos) * 100);
-    document.getElementById('progreso-texto').textContent = `Progreso: ${porcentaje}%`;
+    const texto = `${aprobados} de ${totalRamos} ramos aprobados — Progreso: ${porcentaje}%`;
+
+    document.getElementById('progreso-texto').textContent = texto;
     document.getElementById('barra-avance').style.width = `${porcentaje}%`;
 }
 
