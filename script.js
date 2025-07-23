@@ -103,6 +103,8 @@ const ramos = {
 
 function cargarRamos() {
     const container = document.getElementById('malla-container');
+    container.innerHTML = ""; // limpiar antes de cargar
+
     for (let semestre in ramos) {
         const semDiv = document.createElement('div');
         semDiv.classList.add('semestre');
@@ -124,6 +126,7 @@ function cargarRamos() {
                 if (div.classList.contains('bloqueado')) return;
                 div.classList.toggle('aprobado');
                 guardarEstado(ramo.codigo, div.classList.contains('aprobado'));
+                actualizarProgreso(); // actualiza al hacer clic
             });
 
             semDiv.appendChild(div);
@@ -131,6 +134,8 @@ function cargarRamos() {
 
         container.appendChild(semDiv);
     }
+
+    actualizarProgreso(); // actualiza al cargar
 }
 
 function cumplePrerreq(ramo) {
@@ -144,7 +149,19 @@ function estaAprobado(codigo) {
 
 function guardarEstado(codigo, aprobado) {
     localStorage.setItem(`ramo-${codigo}`, aprobado);
-    location.reload();
+}
+
+function actualizarProgreso() {
+    const totalRamos = Object.values(ramos).flat().length;
+    let aprobados = 0;
+
+    Object.values(ramos).flat().forEach(ramo => {
+        if (estaAprobado(ramo.codigo)) aprobados++;
+    });
+
+    const porcentaje = Math.round((aprobados / totalRamos) * 100);
+    document.getElementById('progreso-texto').textContent = `Progreso: ${porcentaje}%`;
+    document.getElementById('barra-avance').style.width = `${porcentaje}%`;
 }
 
 window.onload = cargarRamos;
